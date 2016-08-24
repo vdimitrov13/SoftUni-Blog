@@ -16,7 +16,7 @@ namespace Softuni_Blog.Models
         public string Title { get; set; }
 
         [Required]
-        public int Body { get; set; }
+        public string Body { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
