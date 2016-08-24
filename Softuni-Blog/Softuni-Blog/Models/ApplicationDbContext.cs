@@ -17,5 +17,7 @@ namespace Softuni_Blog.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Softuni_Blog.Models.Post> Posts { get; set; }
     }
 }
