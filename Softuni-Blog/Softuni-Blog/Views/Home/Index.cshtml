@@ -2,20 +2,21 @@
     ViewBag.Title = "Home Page";
 }
 @model List<Softuni_Blog.Models.Post>
+<section class="row">
 
-@foreach (var post in Model)
-{
-    <div>
-        <div class="post col-md-6">
+    @foreach (var post in Model)
+    {
+        <article class="post col-md-6">
             <h2>@post.Title</h2>
             <div>
                 Posted on <i>@post.Date</i>
                 @if (post.Author != null)
-                {
+            {
                     @:by <i>@post.Author.FullName)</i>
-                }
+            }
             </div>
-            <p>@post.Body</p>
-        </div>
-    </div>
-}
+            <p>@Html.Raw(post.Body.Substring(0, 50))</p>
+            <a href="~/Posts/Details/@post.Id">Read More</a>
+        </article>
+    }
+</section>
