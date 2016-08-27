@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Softuni_Blog.Models;
+using Softuni_Blog.Extensions;
 
 namespace Softuni_Blog.Controllers
 {
@@ -53,6 +54,7 @@ namespace Softuni_Blog.Controllers
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
+                this.AddNotification("Post Created", NotificationType.INFO);
                 return RedirectToAction("Index");
             }
 
@@ -87,6 +89,7 @@ namespace Softuni_Blog.Controllers
             {
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
+                this.AddNotification("Post Edited", NotificationType.INFO);
                 return RedirectToAction("Index");
             }
             return View(post);
@@ -117,6 +120,7 @@ namespace Softuni_Blog.Controllers
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();
+            this.AddNotification("Post Deleted", NotificationType.INFO);
             return RedirectToAction("Index");
         }
 

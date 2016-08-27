@@ -19,5 +19,6 @@ namespace Softuni_Blog.Models
         }
 
         public System.Data.Entity.DbSet<Softuni_Blog.Models.Post> Posts { get; set; }
+        public System.Data.Entity.DbSet<Softuni_Blog.Models.Comment> Comments { get; set; }
     }
 }

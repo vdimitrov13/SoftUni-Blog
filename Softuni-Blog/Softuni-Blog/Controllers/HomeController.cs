@@ -16,6 +16,8 @@ namespace Softuni_Blog.Controllers
         {
             var posts = db.Posts.Include(p => p.Author)
                 .OrderByDescending(p => p.Date).Take(3);
+            //var sidebar = db.Posts.Include(p => p.Title).OrderByDescending(p => p.Date).Take(5);
+            //ViewBag.SidebarPosts = sidebar;           
             return View(posts.ToList());
         }
     }
