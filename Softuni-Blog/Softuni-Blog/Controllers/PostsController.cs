@@ -11,14 +11,30 @@ using Softuni_Blog.Extensions;
 
 namespace Softuni_Blog.Controllers
 {
+    [ValidateInput(false)]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var posts = from p in db.Posts select p;
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    posts = posts.OrderBy(s => s.Title);
+                    break;
+                case "date_desc":
+                    posts = posts.OrderBy(s => s.Date);
+                    break;
+                default:
+                    posts = posts.OrderByDescending(s => s.Date);
+                    break;
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 posts = posts.Where(s => s.Title.Contains(searchString));

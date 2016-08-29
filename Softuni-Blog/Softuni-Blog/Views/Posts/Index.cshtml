@@ -18,13 +18,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th></th>
     </tr>
