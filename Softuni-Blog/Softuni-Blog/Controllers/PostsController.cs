@@ -74,6 +74,7 @@ namespace Softuni_Blog.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(post);
         }
 
