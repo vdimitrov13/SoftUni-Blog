@@ -16,9 +16,15 @@ namespace Softuni_Blog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Posts.ToList());
+            var posts = from p in db.Posts select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                posts = posts.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(posts);
         }
 
         // GET: Posts/Details/5
