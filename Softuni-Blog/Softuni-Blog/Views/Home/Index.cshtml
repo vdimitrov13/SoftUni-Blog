@@ -12,10 +12,14 @@
                 Posted on <i>@post.Date</i>
                 @if (post.Author != null)
             {
-                    @:by <i>@post.Author.FullName)</i>
+                    @:by <i>@post.Author.FullName</i>
             }
+                else
+                {
+                    @:by <i>Anonymous</i>
+                }
             </div>
-            <p>@Html.Raw(post.Body.Substring(0, 50))</p>
+            <p>@Html.Raw(post.Body)</p>
             <a href="~/Posts/Details/@post.Id">Read More</a>
         </article>
     }
