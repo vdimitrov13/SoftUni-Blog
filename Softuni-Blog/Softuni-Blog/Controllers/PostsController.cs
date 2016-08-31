@@ -40,7 +40,7 @@ namespace Softuni_Blog.Controllers
                 posts = posts.Where(s => s.Title.Contains(searchString));
             }
 
-            return View(posts);
+            return View(posts.Include(p => p.Author).Include(p=>p.Comments));
         }
 
         // GET: Posts/Details/5
@@ -70,10 +70,11 @@ namespace Softuni_Blog.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body")] Post post)
         {
             if (ModelState.IsValid)
             {
+                post.Author = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 db.Posts.Add(post);
                 db.SaveChanges();
                 this.AddNotification("Post Created", NotificationType.INFO);

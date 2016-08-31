@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 @model List<Softuni_Blog.Models.Post>
+@using Softuni_Blog.Classes
 <section class="row">
 
     @foreach (var post in Model)
@@ -19,7 +20,7 @@
                     @:by <i>Anonymous</i>
                 }
             </div>
-            <p>@Html.Raw(post.Body)</p>
+            <p>@Html.Raw(Modifier.ReduceText(post.Body))</p>
             <a href="~/Posts/Details/@post.Id">Read More</a>
         </article>
     }

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Softuni_Blog.Models.Post>
-
+@using Softuni_Blog.Classes
 @{
     ViewBag.Title = "Index";
 }
@@ -23,10 +23,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
+        <th>@Html.DisplayNameFor(model => model.Author)</th>
         <th>
             @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
-        <th></th>
+        <th>
+            Actions
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,7 +38,17 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.Raw(item.Body)
+            @Html.Raw(Modifier.ReduceText(item.Body))
+        </td>
+        <td>
+            @if(item.Author != null)
+            {
+                @item.Author.UserName
+            }
+            else
+            {
+                @:No Author
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

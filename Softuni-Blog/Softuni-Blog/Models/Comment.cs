@@ -8,10 +8,13 @@ namespace Softuni_Blog.Models
 {
     public class Comment
     {
+
         public int Id { get; set; }
 
         [StringLength(150)]
         public string Text { get; set; }
+
+        
 
         public Post Post { get; set; }
     }
